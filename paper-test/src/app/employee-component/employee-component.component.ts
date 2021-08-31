@@ -10,9 +10,7 @@ import { DatePipe } from '@angular/common';
 })
 
 export class EmployeeComponentComponent implements OnInit {
-  email:any =[]
-  password:any =[]
-  phoneno:any =[]
+  dataOfEmployee:any=[]
   counter =0
   joining_date:any
   id:any
@@ -54,13 +52,8 @@ export class EmployeeComponentComponent implements OnInit {
   }
   
   submitData(checkingTheForm: NgForm){
-    this.email.push(checkingTheForm.value.emailAddress);
-    this.password.push(checkingTheForm.value.passwordField);
-    this.phoneno.push(checkingTheForm.value.contactField);
-    console.log(this.email);
-    console.log(this.password);
-    console.log(this.phoneno)
-    this.counter++;
+    this.dataOfEmployee.push(checkingTheForm.value)
+    console.log(this.dataOfEmployee)
   }
   searchByName(){
     this.searchByNameVal=true
@@ -71,7 +64,6 @@ export class EmployeeComponentComponent implements OnInit {
     this.removeCandidatesVal=false;
   }
   searchName(event){
-    // console.log(event.target.value) 
     var val = event.target.value
     for(let i =0;i<this.candidate_data.length;i++){
       if(this.candidate_data[i].name.toLowerCase() == val.toLowerCase() ){

@@ -1,20 +1,20 @@
-<div class="container">
-    <!-- <h2>Filling the forms and showing the data</h2>
+<div class="container d-none">
+    <h2>Filling the forms and showing the data</h2>
     <form class=mt-5 #checkingTheForm="ngForm" (ngSubmit)="submitData(checkingTheForm)">
         <div class="form-group d-flex">
-        <label for="exampleInputEmail1" class="w-25">Email address</label>
-        <input type="email" class="form-control w-50" id="exampleInputEmail1" aria-describedby="emailHelp" 
-        placeholder="Enter email" name="emailAddress" ngModel>
+        <label for="exampleName" class="w-25">Name</label>
+        <input type="text" class="form-control w-50" id="exampleName" aria-describedby="nameHep" 
+        placeholder="Enter Name" name="name" ngModel>
         </div>
         <div class="form-group d-flex">
-        <label for="exampleInputPassword1" class="w-25">Password</label>
-        <input type="password" class="form-control w-50" id="exampleInputPassword1" placeholder="Password"
-        name="passwordField" ngModel>
+        <label for="exampleDepartment" class="w-25">Department</label>
+        <input type="text" class="form-control w-50" id="exampleDepartment" placeholder="department"
+        name="department" ngModel>
         </div>
         <div class="form-group d-flex">
-        <label for="exampleInputPassword1" class="w-25">Contact Info</label>
-        <input type="password" class="form-control w-50" id="exampleInputPassword1" placeholder="Number"
-        name="contactField" ngModel>
+        <label for="exampleDate" class="w-25">Joining Date</label>
+        <input type="date" class="form-control w-50" id="exampleDate" placeholder="date"
+        name="dateJoining" ngModel>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -22,21 +22,25 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Email</th>
-            <th scope="col">Password</th>
-            <th scope="col">Phone</th>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Joining Date</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of email;index as i">
+        <tr *ngFor="let item of dataOfEmployee;index as i">
             <th scope="row">{{i+1}}</th>
-            <td>{{email[i]}}</td>
-            <td>{{password[i]}}</td>
-            <td>{{phoneno[i]}}</td>
+            <td>{{i+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.department}}</td>
+            <td>{{item.dateJoining}}</td>
         </tr>
         
         </tbody>
-    </table> -->
+    </table>
+</div>
+<div class="container">
     <h2 >Data provided :</h2>
     <p class="text-uppercase" *ngIf="sortByNameVal">Data after sort by name</p>
     <p class="text-uppercase" *ngIf="sortByDateVal">Data after sort by date</p>
