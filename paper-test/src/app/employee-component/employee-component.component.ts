@@ -27,6 +27,7 @@ export class EmployeeComponentComponent implements OnInit {
   myDate
   distinct =[]
   sortedName
+  distinctData:any
   filteredData:any=[]
   removeData:any=[]
   searchValue
@@ -149,15 +150,17 @@ export class EmployeeComponentComponent implements OnInit {
     this.searchByExpVal=false;
     this.removeCandidatesVal=false;
     const distinctObj={}
+    const distinctArray:any =[]
     this.candidate_data.forEach(function(obj){
-      
       var key = obj['department']
+     
       distinctObj[key]=(distinctObj[key]||0)+1
-      
+      // distinctArray.push(obj['department']+' '+distinctObj[key])
+      // console.log(distinctArray)
     })
     console.log(distinctObj)
-    
-
+    // this.distinctData=distinctObj
+    // console.log( this.distinctData)
   }
   removeCandidates(){
     this.removeCandidatesVal=true;
@@ -166,6 +169,7 @@ export class EmployeeComponentComponent implements OnInit {
     this.searchByNameVal=false
     this.searchByExpVal=false;
     this.searchDistinctVal=false;
+    this.removeData=[]
     for(let i=0;i<this.candidate_data.length;i++){
       if(this.candidate_data[i].department !== "Development" ){
         this.removeData.push(this.candidate_data[i])
@@ -173,5 +177,8 @@ export class EmployeeComponentComponent implements OnInit {
       }
     }
   }
+  reset(){
+    window.location.reload() 
+   }
 }
 

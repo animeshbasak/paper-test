@@ -44,45 +44,54 @@
     <h2 >Data provided :</h2>
     <p class="text-uppercase" *ngIf="sortByNameVal">Data after sort by name</p>
     <p class="text-uppercase" *ngIf="sortByDateVal">Data after sort by date</p>
+    <p class="text-uppercase" *ngIf="removeCandidatesVal">Data after removing department Development</p>
     <p class="text-uppercase" *ngIf="searchByExpVal">Data of all candidates with experience more than 2 years</p>
     <table class="table mt-4">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Department</th>
-        <th scope="col">Joining Date</th>
-      </tr>
-    </thead>
-    <!-- <tbody *ngIf="!removeCandidatesVal && !sortByNameVal && !sortByDateVal && !searchByNameVal &&!searchByExpVal &&!searchDistinctVal"> -->
-    <tbody *ngIf="!sortByNameVal && !searchByExpVal">
-      <tr *ngFor="let item of candidate_data;index as i" >
-        <th scope="row">{{i+1}}</th>
-        <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
-        <td>{{item.department}}</td>
-        <td>{{item.joining_date}}</td>
-      </tr>     
-    </tbody>
-    <tbody *ngIf="sortByNameVal">
-        <tr *ngFor="let item of sortedName;index as i">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Joining Date</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="!sortByNameVal && !searchByExpVal && !removeCandidatesVal">
+        <tr *ngFor="let item of candidate_data;index as i" >
             <th scope="row">{{i+1}}</th>
             <td>{{item.id}}</td>
             <td>{{item.name}}</td>
             <td>{{item.department}}</td>
             <td>{{item.joining_date}}</td>
         </tr>     
-    </tbody>
-    <tbody *ngIf="searchByExpVal">
-        <tr *ngFor="let item of filteredData;index as i">
-            <th scope="row">{{i+1}}</th>
-            <td>{{item.id}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.department}}</td>
-            <td>{{item.joining_date}}</td>
-        </tr>     
-    </tbody>
+        </tbody>
+        <tbody *ngIf="sortByNameVal">
+            <tr *ngFor="let item of sortedName;index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.department}}</td>
+                <td>{{item.joining_date}}</td>
+            </tr>     
+        </tbody>
+        <tbody *ngIf="searchByExpVal">
+            <tr *ngFor="let item of filteredData;index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.department}}</td>
+                <td>{{item.joining_date}}</td>
+            </tr>     
+        </tbody>
+        <tbody *ngIf="removeCandidatesVal">
+            <tr *ngFor="let item of removeData;index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.department}}</td>
+                <td>{{item.joining_date}}</td>
+            </tr>     
+        </tbody>
     </table>
     <hr>
     <div *ngIf="searchByNameVal" class="mt-2">
@@ -114,30 +123,9 @@
     </table>
     <span *ngIf="!searchValue">{{errorMsg}}</span>
     </div>
-    <div *ngIf="removeCandidatesVal" class="mt-2">
-        <p class="text-uppercase">Data after removing department Development</p>
-    <table class="table mt-4">
-        <thead>
-            <tr>
-            <th scope="col">#</th>
-            <th scope="col">id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Department</th>
-            <th scope="col">Joining Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of removeData;index as i">
-                <th scope="row">{{i+1}}</th>
-                <td>{{item.id}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.department}}</td>
-                <td>{{item.joining_date}}</td>
-            </tr>     
-        </tbody>
-    </table>
+    <div *ngIf="searchDistinctVal" class="mt-2">
+        <span>{{distinctData}}</span>
     </div>
-  
     <hr>
     <h2 class="mt-2">Tasks to Perform</h2>
     <div class="d-flex  mt-1">
@@ -162,6 +150,10 @@
     </div>
     <div class="d-flex  mt-1">
     <p class='w-50'>6. Remove all candidates from 'Development' department..</p>
-    <button type="submit" class="btn btn-primary w-25 " (click)='removeCandidates()'>Click to remove</button>
+    <button type="submit" class="btn btn-primary w-25 " (click)='removeCandidates()'>Click to remove all from dev</button>
+    </div>
+    <div class="d-flex  mt-1">
+    <p class='w-50'>7. Reset to default</p>
+    <button type="submit" class="btn btn-primary w-25 " (click)='reset()'>Click to reset</button>
     </div>
 </div>
