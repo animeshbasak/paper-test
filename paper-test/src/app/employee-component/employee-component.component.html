@@ -37,9 +37,9 @@
         
         </tbody>
     </table> -->
-    <h2 *ngIf="!sortByNameVal && !searchByExpVal">Data provided :</h2>
-    <h2 *ngIf="sortByNameVal && searchByExpVal">Modified Data :</h2>
+    <h2 >Data provided :</h2>
     <p class="text-uppercase" *ngIf="sortByNameVal">Data after sort by name</p>
+    <p class="text-uppercase" *ngIf="sortByDateVal">Data after sort by date</p>
     <p class="text-uppercase" *ngIf="searchByExpVal">Data of all candidates with experience more than 2 years</p>
     <table class="table mt-4">
     <thead>
@@ -88,7 +88,7 @@
     <input type="search" class="form-control w-50"
     placeholder="Enter name" name="search by name" (keyup)="searchName($event)">
     </div>
-    <table class="table mt-4">
+    <table class="table mt-4" *ngIf="searchValue">
         <thead>
             <tr>
             <th scope="col">#</th>
@@ -108,6 +108,7 @@
             </tr>     
         </tbody>
     </table>
+    <span *ngIf="!searchValue">{{errorMsg}}</span>
     </div>
     <div *ngIf="removeCandidatesVal" class="mt-2">
         <p class="text-uppercase">Data after removing department Development</p>

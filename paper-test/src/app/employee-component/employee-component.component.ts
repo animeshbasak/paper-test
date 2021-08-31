@@ -31,6 +31,8 @@ export class EmployeeComponentComponent implements OnInit {
   sortedName
   filteredData:any=[]
   removeData:any=[]
+  searchValue
+  errorMsg
   candidate_data=[ 
     {"id": 11,"name": "Ash","department": "Finance","joining_date": "8/10/2016"},
     {"id": 12,"name": "John","department": "HR","joining_date": "18/1/2011"},
@@ -78,8 +80,8 @@ export class EmployeeComponentComponent implements OnInit {
         this.searchEmp = searchData.name
         this.searchDept = searchData.department
         this.searchjoiningDate = searchData.joining_date
-     
-      }
+        this.searchValue = true
+       }
     }
   }
   sortByName(){
@@ -139,14 +141,12 @@ export class EmployeeComponentComponent implements OnInit {
     const result:any = [];
     for(let i=0; i<data.length; i++) {
       let splitDate = data[i]["joining_date"].split("/");
-      // console.log(splitDate)
       const joiningYear = Number(splitDate[2]);
       const currentYear = new Date().getFullYear();
       if(currentYear - joiningYear > 2) {
         result.push(data[i]);
       }   
     }
-    // console.log(result.length);
     return result;
   }
   searchDistinct(){
