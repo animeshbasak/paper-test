@@ -1,0 +1,162 @@
+<div class="container">
+    <!-- <h2>Filling the forms and showing the data</h2>
+    <form class=mt-5 #checkingTheForm="ngForm" (ngSubmit)="submitData(checkingTheForm)">
+        <div class="form-group d-flex">
+        <label for="exampleInputEmail1" class="w-25">Email address</label>
+        <input type="email" class="form-control w-50" id="exampleInputEmail1" aria-describedby="emailHelp" 
+        placeholder="Enter email" name="emailAddress" ngModel>
+        </div>
+        <div class="form-group d-flex">
+        <label for="exampleInputPassword1" class="w-25">Password</label>
+        <input type="password" class="form-control w-50" id="exampleInputPassword1" placeholder="Password"
+        name="passwordField" ngModel>
+        </div>
+        <div class="form-group d-flex">
+        <label for="exampleInputPassword1" class="w-25">Contact Info</label>
+        <input type="password" class="form-control w-50" id="exampleInputPassword1" placeholder="Number"
+        name="contactField" ngModel>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <table class="table mt-4">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Phone</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of email;index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{email[i]}}</td>
+            <td>{{password[i]}}</td>
+            <td>{{phoneno[i]}}</td>
+        </tr>
+        
+        </tbody>
+    </table> -->
+    <h2 *ngIf="!sortByNameVal && !searchByExpVal">Data provided :</h2>
+    <h2 *ngIf="sortByNameVal && searchByExpVal">Modified Data :</h2>
+    <p class="text-uppercase" *ngIf="sortByNameVal">Data after sort by name</p>
+    <p class="text-uppercase" *ngIf="searchByExpVal">Data of all candidates with experience more than 2 years</p>
+    <table class="table mt-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Department</th>
+        <th scope="col">Joining Date</th>
+      </tr>
+    </thead>
+    <!-- <tbody *ngIf="!removeCandidatesVal && !sortByNameVal && !sortByDateVal && !searchByNameVal &&!searchByExpVal &&!searchDistinctVal"> -->
+    <tbody *ngIf="!sortByNameVal && !searchByExpVal">
+      <tr *ngFor="let item of candidate_data;index as i" >
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.department}}</td>
+        <td>{{item.joining_date}}</td>
+      </tr>     
+    </tbody>
+    <tbody *ngIf="sortByNameVal">
+        <tr *ngFor="let item of sortedName;index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.department}}</td>
+            <td>{{item.joining_date}}</td>
+        </tr>     
+    </tbody>
+    <tbody *ngIf="searchByExpVal">
+        <tr *ngFor="let item of filteredData;index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.department}}</td>
+            <td>{{item.joining_date}}</td>
+        </tr>     
+    </tbody>
+    </table>
+    <hr>
+    <div *ngIf="searchByNameVal" class="mt-2">
+    <p class="text-uppercase">Input name of the person whose record you want to search</p>
+    <div class="d-flex">
+    <label for="exampleinputname" class="w-25">Enter Name</label>
+    <input type="search" class="form-control w-50"
+    placeholder="Enter name" name="search by name" (keyup)="searchName($event)">
+    </div>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Joining Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>{{searchId}}</td>
+              <td>{{searchEmp}}</td>
+              <td>{{searchDept}}</td>
+              <td>{{searchjoiningDate}}</td>
+            </tr>     
+        </tbody>
+    </table>
+    </div>
+    <div *ngIf="removeCandidatesVal" class="mt-2">
+        <p class="text-uppercase">Data after removing department Development</p>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Joining Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of removeData;index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.department}}</td>
+                <td>{{item.joining_date}}</td>
+            </tr>     
+        </tbody>
+    </table>
+    </div>
+  
+    <hr>
+    <h2 class="mt-2">Tasks to Perform</h2>
+    <div class="d-flex  mt-1">
+    <p class='w-50'>1. Sort by Name</p>
+    <button type="submit" class="btn btn-primary w-25 " (click)='sortByName()'>Click to sort by Name</button>
+    </div>
+    <div class="d-flex mt-1">
+    <p class='w-50'>2. Sort by Joining Date</p>
+    <button type="submit" class="btn btn-primary w-25 " (click)='sortByDate()'>Click to sort by Joining Date</button>
+    </div>
+    <div class="d-flex  mt-1">
+    <p class='w-50'>3. Search by Name</p>
+    <button type="submit" class="btn btn-primary w-25 " (click)='searchByName()'>Click to search by name</button>
+    </div>
+    <div class="d-flex  mt-1">
+    <p class='w-50'> 4. Find all candidates with experience more than 2 years</p>
+    <button type="submit" class="btn btn-primary w-25 " (click)='searchByExp()'>Click to find by exp</button>
+    </div>
+    <div class="d-flex  mt-1">
+    <p class='w-50'>5. Get distinct departments and count of candidates in each.</p>
+    <button type="submit" class="btn btn-primary w-25 " (click)='searchDistinct()'>Click to find distinct</button>
+    </div>
+    <div class="d-flex  mt-1">
+    <p class='w-50'>6. Remove all candidates from 'Development' department..</p>
+    <button type="submit" class="btn btn-primary w-25 " (click)='removeCandidates()'>Click to remove</button>
+    </div>
+</div>
