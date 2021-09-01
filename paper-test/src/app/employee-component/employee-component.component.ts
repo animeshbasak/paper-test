@@ -42,7 +42,8 @@ export class EmployeeComponentComponent implements OnInit {
     { "id": 17,"name": "Gare","department": "Development",  "joining_date": "6/4/2014"},
     { "id": 18,  "name": "Hola",  "department": "Development",  "joining_date": "8/12/2010"}, 
     {"id": 19,  "name": "Ola",  "department": "HR",  "joining_date": "7/5/2011"},
-    { "id": 20,  "name": "Kim",  "department": "Finance",  "joining_date": "20/10/2010"}]
+    { "id": 20,  "name": "Kim",  "department": "Finance",  "joining_date": "20/10/2010"}
+  ]
 
   constructor(private datePipe: DatePipe,private router: Router){ 
     this.myDate = this.datePipe.transform(this.myDate, 'dd/mm/yyyy');
@@ -54,7 +55,6 @@ export class EmployeeComponentComponent implements OnInit {
   
   submitData(checkingTheForm: NgForm){
     this.dataOfEmployee.push(checkingTheForm.value)
-    console.log(this.dataOfEmployee)
   }
   searchByName(){
     this.searchByNameVal=true
@@ -65,7 +65,7 @@ export class EmployeeComponentComponent implements OnInit {
     this.removeCandidatesVal=false;
   }
   searchName(event){
-    var val = event.target.value
+    const val = event.target.value
     for(let i =0;i<this.candidate_data.length;i++){
       if(this.candidate_data[i].name.toLowerCase() == val.toLowerCase() ){
         const searchData = this.candidate_data[i]
@@ -85,12 +85,11 @@ export class EmployeeComponentComponent implements OnInit {
     this.searchDistinctVal=false;
     this.removeCandidatesVal=false;
     this.sortedName = this.sortByKey(this.candidate_data,"name")
-    console.log(this.sortedName);
   }
   sortByKey(arr,key){
     return arr.sort(function(a,b){
-      var x=a[key];
-      var y=b[key];
+      let x=a[key];
+      let y=b[key];
       return ((x<y)?-1:((x>y)?1:0))
     })
   }
@@ -102,21 +101,19 @@ export class EmployeeComponentComponent implements OnInit {
     this.searchDistinctVal=false;
     this.removeCandidatesVal=false;
     this.sortedName = this.sortByJoiningDate(this.candidate_data);
-    console.log(this.sortedName);
   }
   sortByJoiningDate(array) {
     return array.sort(function(a, b) {
-      var temp = a["joining_date"].split("/");
-      var temp1 = b["joining_date"].split("/");
-      var year = temp[2];
-      var month = temp[1];
-      var day = temp[0];
-      var year1 = temp1[2];
-      var month1 = temp[1];
-      var day1 = temp[0];
-      var x = new Date(`${year}-${month}-${day}`).getTime();
-      var y = new Date(`${year1}-${month1}-${day1}`).getTime();
-      // var x = a[key]; var y = b[key];
+      const temp = a["joining_date"].split("/");
+      const temp1 = b["joining_date"].split("/");
+      const year = temp[2];
+      const month = temp[1];
+      const day = temp[0];
+      const year1 = temp1[2];
+      const month1 = temp[1];
+      const day1 = temp[0];
+      const x = new Date(`${year}-${month}-${day}`).getTime();
+      const y = new Date(`${year1}-${month1}-${day1}`).getTime();
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
   }
@@ -128,7 +125,6 @@ export class EmployeeComponentComponent implements OnInit {
     this.searchDistinctVal=false;
     this.removeCandidatesVal=false;
     this.filteredData = this.experiencedCandidates(this.candidate_data)
-    console.log(this.filteredData)
   }
   experiencedCandidates(data) {
     const result:any = [];
@@ -150,22 +146,17 @@ export class EmployeeComponentComponent implements OnInit {
     this.searchByExpVal=false;
     this.removeCandidatesVal=false;
     const distinctObj={}
-    const distinctArray:any =[]
     this.candidate_data.forEach(function(obj){
-      var key = obj['department']
+      let key = obj['department']
       distinctObj[key]=(distinctObj[key]||0)+1
     })
-    // console.log(distinctObj)
-    this.distinctData=distinctObj
-    var newArray:any = [];
-    for(let key in this.distinctData){ //loop over keys of MyObj object variable 
-    //string variable where we concatenate key and value as below
-      var str = "Department :"+ key +" & count : "+this.distinctData[key]+"";
-      newArray.push(str);//we push this string value to the newArray declared outside of the loop
-    }
-    this.distinctData=newArray
-    console.log( this.distinctData);
     
+    const newArray:any = [];
+    for(let key in distinctObj){
+      let str = `Department : ${key} & count : ${distinctObj[key]}`;
+      newArray.push(str);
+    }
+    this.distinctData=newArray;
   }
   removeCandidates(){
     this.removeCandidatesVal=true;
@@ -178,7 +169,6 @@ export class EmployeeComponentComponent implements OnInit {
     for(let i=0;i<this.candidate_data.length;i++){
       if(this.candidate_data[i].department !== "Development" ){
         this.removeData.push(this.candidate_data[i])
-        console.log(this.removeData)
       }
     }
   }
