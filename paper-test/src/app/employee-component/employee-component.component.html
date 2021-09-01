@@ -1,50 +1,6 @@
 <div class="container justify-content-center align-items-center text-center pt-3 mt-2">
   <button class="btn btn-primary p-2" (click)='openRedirect()'>Click here to redirect to Redirect page</button>
 </div>
-<div class="container d-none">
-   <div class="main-data">
-    <h2>Filling the forms and showing the data</h2>
-    <form class=mt-5 #checkingTheForm="ngForm" (ngSubmit)="submitData(checkingTheForm)">
-        <div class="form-group d-flex">
-        <label for="exampleName" class="w-25">Name</label>
-        <input type="text" class="form-control w-50" id="exampleName" aria-describedby="nameHep" 
-        placeholder="Enter Name" name="name" ngModel>
-        </div>
-        <div class="form-group d-flex">
-        <label for="exampleDepartment" class="w-25">Department</label>
-        <input type="text" class="form-control w-50" id="exampleDepartment" placeholder="department"
-        name="department" ngModel>
-        </div>
-        <div class="form-group d-flex">
-        <label for="exampleDate" class="w-25">Joining Date</label>
-        <input type="date" class="form-control w-50" id="exampleDate" placeholder="date"
-        name="dateJoining" ngModel>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <table class="table mt-4">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Department</th>
-            <th scope="col">Joining Date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let item of dataOfEmployee;index as i">
-            <th scope="row">{{i+1}}</th>
-            <td>{{i+1}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.department}}</td>
-            <td>{{item.dateJoining}}</td>
-        </tr>
-        
-        </tbody>
-    </table>
-   </div>
-</div>
 <div class="container">
   <div class="main-data">
     <h2 class="text-align-center text-uppercase">Data provided for task</h2>

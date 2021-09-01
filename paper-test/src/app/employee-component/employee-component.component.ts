@@ -10,8 +10,6 @@ import { Router } from '@angular/router';
 })
 
 export class EmployeeComponentComponent implements OnInit {
-  dataOfEmployee:any=[]
-  counter =0
   joining_date:any
   id:any
   sortByNameVal:boolean=false;
@@ -51,10 +49,6 @@ export class EmployeeComponentComponent implements OnInit {
 
   ngOnInit(): void {
   
-  }
-  
-  submitData(checkingTheForm: NgForm){
-    this.dataOfEmployee.push(checkingTheForm.value)
   }
   searchByName(){
     this.searchByNameVal=true
