@@ -124,11 +124,11 @@
             </tr>     
         </tbody>
     </table>
-    <span *ngIf="!searchValue">{{errorMsg}}</span>
     </div>
-    <!-- <div *ngIf="searchDistinctVal" class="mt-2">
-        <span>{{distinctData}}</span>
-    </div> -->
+    <div *ngIf="searchDistinctVal" class="mt-2">
+        <h2 >Please find the details below :</h2> 
+        <p *ngFor="let item of distinctData">{{item}}</p>
+    </div>
     <hr>
     <h2 class="mt-2">Tasks to Perform</h2>
     <div class="d-flex  mt-1">

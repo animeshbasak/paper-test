@@ -27,7 +27,7 @@ export class EmployeeComponentComponent implements OnInit {
   myDate
   distinct =[]
   sortedName
-  distinctData:any
+  distinctData:any={}
   filteredData:any=[]
   removeData:any=[]
   searchValue
@@ -153,14 +153,19 @@ export class EmployeeComponentComponent implements OnInit {
     const distinctArray:any =[]
     this.candidate_data.forEach(function(obj){
       var key = obj['department']
-     
       distinctObj[key]=(distinctObj[key]||0)+1
-      // distinctArray.push(obj['department']+' '+distinctObj[key])
-      // console.log(distinctArray)
     })
-    console.log(distinctObj)
-    // this.distinctData=distinctObj
-    // console.log( this.distinctData)
+    // console.log(distinctObj)
+    this.distinctData=distinctObj
+    var newArray:any = [];
+    for(let key in this.distinctData){ //loop over keys of MyObj object variable 
+    //string variable where we concatenate key and value as below
+      var str = "Department :"+ key +" & count : "+this.distinctData[key]+"";
+      newArray.push(str);//we push this string value to the newArray declared outside of the loop
+    }
+    this.distinctData=newArray
+    console.log( this.distinctData);
+    
   }
   removeCandidates(){
     this.removeCandidatesVal=true;
