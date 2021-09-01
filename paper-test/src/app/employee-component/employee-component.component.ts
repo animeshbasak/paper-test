@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-employee-component',
   templateUrl: './employee-component.component.html',
@@ -44,7 +44,7 @@ export class EmployeeComponentComponent implements OnInit {
     {"id": 19,  "name": "Ola",  "department": "HR",  "joining_date": "7/5/2011"},
     { "id": 20,  "name": "Kim",  "department": "Finance",  "joining_date": "20/10/2010"}]
 
-  constructor(private datePipe: DatePipe){ 
+  constructor(private datePipe: DatePipe,private router: Router){ 
     this.myDate = this.datePipe.transform(this.myDate, 'dd/mm/yyyy');
   }
 
@@ -179,6 +179,9 @@ export class EmployeeComponentComponent implements OnInit {
   }
   reset(){
     window.location.reload() 
+   }
+   openRedirect(){
+    this.router.navigate(['redirect']);
    }
 }
 
