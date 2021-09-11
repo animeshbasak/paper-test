@@ -1,3 +1,3 @@
 # paper-test
 Angular Assessment
-Please go to this <a href='ngxanimesh.netlify.app' alt="website"> link check the live project
+Please go to this <a href='ngxanimesh.netlify.app' alt="website"> link </a> check the live project
